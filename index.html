@@ -1,372 +1,389 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Honywood Reads: Recommended Books</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Honywood Reads: Recommended Books</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Fonts: Headings = Montserrat, Body = Open Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <!-- Fonts: Headings = Montserrat, Body = Open Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
-    <style>
-        /* Apply Honywood-like fonts */
-        html, body { font-family: "Open Sans", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif; }
-        h1, h2, h3, h4, h5, h6, .font-heading { font-family: "Montserrat", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif; }
+  <style>
+    /* Apply Honywood-like fonts */
+    html, body { font-family: "Open Sans", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif; }
+    h1, h2, h3, h4, h5, h6, .font-heading { font-family: "Montserrat", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif; }
 
-        /* Custom scrollbar for a nicer look */
-        .custom-scroll::-webkit-scrollbar { width: 8px; }
-        .custom-scroll::-webkit-scrollbar-thumb {
-            background-color: #f7a838; /* A nice orange/amber */
-            border-radius: 4px;
-        }
-        .custom-scroll::-webkit-scrollbar-track { background-color: #f3f4f6; }
+    /* Custom scrollbar for a nicer look */
+    .custom-scroll::-webkit-scrollbar { width: 8px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background-color: #f7a838; border-radius: 4px; }
+    .custom-scroll::-webkit-scrollbar-track { background-color: #f3f4f6; }
 
-        /* Custom hover effect for year bubbles */
-        .year-bubble { transition: transform .2s ease, box-shadow .2s ease; }
-        .year-bubble:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
-        }
-    </style>
+    /* Custom hover effect for year bubbles */
+    .year-bubble { transition: transform .2s ease, box-shadow .2s ease; }
+    .year-bubble:hover { transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06); }
+
+    /* Footer signature */
+    .signature { letter-spacing: .02em; }
+
+    /* ====================
+         EDITING GUIDE 
+       ====================
+       1) SCROLL to the big section that says:  "BOOK CATALOG — EDIT HERE"
+       2) Each book has FOUR clearly labelled fields:
+            - COVER_URL  (paste your image link)
+            - TITLE      (type the book title)
+            - AUTHOR     (type the author's name)
+            - AMAZON_URL (paste Amazon link)
+            - BORROWBOX_URL (paste BorrowBox link)
+       3) COPY/PASTE one of the example objects if you want to add another book.
+       4) Put books under the right year group array (e.g. 'Year 7', 'Year 8', etc.)
+       That's it! No other code changes needed. 
+    */
+  </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
-    <div id="app" class="max-w-6xl mx-auto p-4 md:p-8">
+  <div id="app" class="max-w-6xl mx-auto p-4 md:p-8">
 
-        <!-- Header -->
-        <header class="py-8 mb-10 bg-blue-900 text-white rounded-xl shadow-2xl relative overflow-hidden">
-            <!-- Background decorative pattern -->
-            <div class="absolute inset-0 opacity-10 bg-repeat" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\' opacity=\'0.2\'><text x=\'10\' y=\'80\' font-size=\'100\' fill=\'#FFFFFF\'>📚</text></svg>'); background-size: 50px;"></div>
+    <!-- Header -->
+    <header class="py-8 mb-10 bg-blue-900 text-white rounded-xl shadow-2xl relative overflow-hidden">
+      <!-- Background decorative pattern -->
+      <div class="absolute inset-0 opacity-10 bg-repeat" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\' opacity=\'0.2\'><text x=\'10\' y=\'80\' font-size=\'100\' fill=\'#FFFFFF\'>📚</text></svg>'); background-size: 50px;"></div>
 
-            <!-- Main Title Block -->
-            <div class="relative z-10 flex flex-col items-center px-4 md:px-8">
-                <div class="text-center mx-4">
-                    <h1 class="font-heading text-5xl md:text-6xl font-extrabold tracking-tight">
-                        Honywood <span class="text-yellow-400">Reads</span>
-                    </h1>
-                    <p class="text-xl text-blue-100 mt-2 font-medium"></p>
-                </div>
-            </div>
-
-            <!-- Book Icons -->
-            <div class="hidden md:block absolute top-1/2 left-8 -translate-y-1/2 z-10">
-                <i data-lucide="book-open" class="w-16 h-16 text-yellow-400"></i>
-            </div>
-            <div class="hidden md:block absolute top-1/2 right-8 -translate-y-1/2 z-10">
-                <i data-lucide="book-open" class="w-16 h-16 text-yellow-400"></i>
-            </div>
-
-            <p class="text-xl text-blue-100 mt-2 text-center font-medium relative z-10">Your monthly guide to amazing books.</p>
-        </header>
-
-        <!-- Main Navigation Tabs -->
-        <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mb-10">
-            <button id="nav-reads" onclick="showSection('recommended-reads')" class="flex-1 py-3 px-6 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-300">
-                Recommended Reads
-            </button>
-            <button id="nav-borrowbox" onclick="showSection('borrowbox-guide')" class="flex-1 py-3 px-6 bg-gray-200 text-gray-700 font-semibold rounded-lg shadow-md hover:bg-gray-300 transition duration-300">
-                BorrowBox Guide
-            </button>
-            <button id="nav-reviews" onclick="showSection('submit-review')" class="flex-1 py-3 px-6 bg-gray-200 text-gray-700 font-semibold rounded-lg shadow-md hover:bg-gray-300 transition duration-300">
-                Submit a Review
-            </button>
+      <!-- Main Title Block -->
+      <div class="relative z-10 flex flex-col items-center px-4 md:px-8">
+        <div class="text-center mx-4">
+          <h1 class="font-heading text-5xl md:text-6xl font-extrabold tracking-tight">
+            Honywood <span class="text-yellow-400">Reads</span>
+          </h1>
+          <p class="text-xl text-blue-100 mt-2 font-medium">Your monthly guide to amazing books.</p>
         </div>
+      </div>
 
-        <!-- Section 1: Recommended Reads -->
-        <div id="recommended-reads" class="section bg-white p-6 md:p-8 rounded-xl shadow-xl">
-            <h2 class="font-heading text-3xl font-bold text-gray-800 mb-6 border-b pb-3">Recommended Reads</h2>
+      <!-- Book Icons -->
+      <div class="hidden md:block absolute top-1/2 left-8 -translate-y-1/2 z-10">
+        <i data-lucide="book-open" class="w-16 h-16 text-yellow-400"></i>
+      </div>
+      <div class="hidden md:block absolute top-1/2 right-8 -translate-y-1/2 z-10">
+        <i data-lucide="book-open" class="w-16 h-16 text-yellow-400"></i>
+      </div>
+    </header>
 
-            <!-- Year Group Bubbles -->
-            <div id="year-tabs" class="flex flex-wrap gap-3 mb-8"></div>
-
-            <!-- Reading List Container -->
-            <div id="reading-list-container" class="space-y-6"></div>
-        </div>
-
-        <!-- Section 2: BorrowBox Guide -->
-        <div id="borrowbox-guide" class="section hidden bg-white p-6 md:p-8 rounded-xl shadow-xl">
-            <h2 class="font-heading text-3xl font-bold text-gray-800 mb-6 border-b pb-3">How to Get Started with BorrowBox</h2>
-
-            <div class="space-y-6 text-gray-700">
-                <p>BorrowBox is your free ticket to thousands of eBooks and eAudiobooks using your local library card! It's the fastest way to get your hands on our recommendations.</p>
-
-                <h3 class="font-heading text-2xl font-semibold text-blue-700">Step 1: Get Your Library Card</h3>
-                <p>You will need an active membership with your local library service (e.g., Essex Libraries). If you don't have one, ask your school librarian or visit the library's website to sign up—it's usually quick and free for students!</p>
-
-                <h3 class="font-heading text-2xl font-semibold text-blue-700">Step 2: Download the App</h3>
-                <ul class="list-disc list-inside ml-4 space-y-2">
-                    <li>Search for the <strong>BorrowBox</strong> app on the Apple App Store (iOS) or Google Play Store (Android).</li>
-                    <li>You can also access it via your web browser on a computer.</li>
-                </ul>
-
-                <h3 class="font-heading text-2xl font-semibold text-blue-700">Step 3: Log In</h3>
-                <ul class="list-disc list-inside ml-4 space-y-2">
-                    <li>Open the app and find your library service (e.g., “Essex County Council Libraries”).</li>
-                    <li>Enter your Library Card Number and your PIN/Password.</li>
-                    <li>If you've forgotten your PIN, there's usually a “Forgot PIN” link on the login screen, or you can contact your library directly.</li>
-                </ul>
-
-                <h3 class="font-heading text-2xl font-semibold text-blue-700">Step 4: Start Borrowing!</h3>
-                <p>You can now browse thousands of titles, borrow them instantly, and read or listen right within the app. Enjoy reading!</p>
-            </div>
-        </div>
-
-        <!-- Section 3: Submit Review & Help -->
-        <div id="submit-review" class="section hidden bg-white p-6 md:p-8 rounded-xl shadow-xl">
-            <h2 class="font-heading text-3xl font-bold text-gray-800 mb-6 border-b pb-3">Submit a Review & Get Help</h2>
-
-            <!-- Help box -->
-            <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-8 rounded-lg">
-                <div class="flex items-center">
-                    <i data-lucide="mail" class="w-6 h-6 text-blue-600 mr-3"></i>
-                    <p class="font-heading font-bold text-lg text-blue-800">Need Help? Contact Us!</p>
-                </div>
-                <p class="mt-2 text-blue-700">For any issues with BorrowBox, book suggestions, or general questions, please email:</p>
-                <a href="mailto:leadlearners@honywoodschool.com" class="text-orange-600 font-semibold hover:underline block mt-1">leadlearners@honywoodschool.com</a>
-            </div>
-
-            <h3 class="font-heading text-2xl font-semibold text-gray-800 mb-4">Ready for a prize? Share Your Book Review!</h3>
-            <p class="text-gray-600 mb-4">Write a review of any book you've read! One student review will be selected each month to feature in the school headlines, and the winner will receive an awesome prize.</p>
-
-            <form id="review-form" class="space-y-4">
-                <div>
-                    <label for="review-title" class="block text-sm font-semibold text-gray-700">Book Title</label>
-                    <input type="text" id="review-title" required placeholder="e.g. The Hobbit" class="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-                </div>
-                <div>
-                    <label for="review-author" class="block text-sm font-semibold text-gray-700">Author</label>
-                    <input type="text" id="review-author" required placeholder="e.g. J.R.R. Tolkien" class="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-                </div>
-                <div>
-                    <label for="review-student" class="block text-sm font-semibold text-gray-700">Your Name & Year Group (e.g., John S, Year 9)</label>
-                    <input type="text" id="review-student" required placeholder="Your Name, Year Group" class="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-                </div>
-                <div>
-                    <label for="review-text" class="block text-sm font-semibold text-gray-700">Your Review (Try to keep it under 150 words!)</label>
-                    <textarea id="review-text" rows="5" required placeholder="What did you think of the book? Why should others read it?" class="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
-                </div>
-                <button type="submit" class="w-full py-3 px-4 bg-orange-500 text-white font-semibold rounded-lg shadow-md hover:bg-orange-600 transition duration-300">
-                    Send My Review!
-                </button>
-            </form>
-            <div id="review-status" class="mt-4 hidden p-3 bg-green-100 border border-green-400 text-green-700 rounded-md" role="alert"></div>
-        </div>
+    <!-- Main Navigation Tabs -->
+    <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mb-10">
+      <button id="nav-reads" data-section="recommended-reads" class="flex-1 py-3 px-6 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Recommended Reads</button>
+      <button id="nav-borrowbox" data-section="borrowbox-guide" class="flex-1 py-3 px-6 bg-gray-200 text-gray-700 font-semibold rounded-lg shadow-md hover:bg-gray-300 transition duration-300">BorrowBox Guide</button>
+      <button id="nav-reviews" data-section="submit-review" class="flex-1 py-3 px-6 bg-gray-200 text-gray-700 font-semibold rounded-lg shadow-md hover:bg-gray-300 transition duration-300">Submit a Review</button>
     </div>
 
-    <script>
-        // ======================================================================================
-        // BOOK DATA (update monthly)
-        // ======================================================================================
-        const bookData = {
-            'Year 7': [
-                {
-                    title: "The BFG",
-                    author: "Roald Dahl",
-                    coverUrl: "https://placehold.co/100x150/f7a838/ffffff?text=The+BFG",
-                    buyLink: "https://www.amazon.co.uk/BFG-Roald-Dahl/dp/0141362758",
-                    borrowLink: "https://www.borrowbox.com/gb/en/audiobooks/The-BFG/details/163013"
-                },
-                {
-                    title: "Goodnight Mister Tom",
-                    author: "Michelle Magorian",
-                    coverUrl: "https://placehold.co/100x150/8a2be2/ffffff?text=Mister+Tom",
-                    buyLink: "https://www.amazon.co.uk/Goodnight-Mister-Tom-Puffin-Modern/dp/0141348827",
-                    borrowLink: "https://www.borrowbox.com/gb/en/audiobooks/Goodnight-Mister-Tom/details/123456"
-                }
-            ],
-            'Year 8': [
-                {
-                    title: "Holes",
-                    author: "Louis Sachar",
-                    coverUrl: "https://placehold.co/100x150/1e90ff/ffffff?text=HOLES",
-                    buyLink: "https://www.amazon.co.uk/Holes-Louis-Sachar/dp/1405206338",
-                    borrowLink: "https://www.borrowbox.com/gb/en/audiobooks/Holes/details/234567"
-                },
-                {
-                    title: "The Graveyard Book",
-                    author: "Neil Gaiman",
-                    coverUrl: "https://placehold.co/100x150/228b22/ffffff?text=Graveyard+Book",
-                    buyLink: "https://www.amazon.co.uk/Graveyard-Book-Neil-Gaiman/dp/1408821941",
-                    borrowLink: "https://www.borrowbox.com/gb/en/audiobooks/The-Graveyard-Book/details/345678"
-                }
-            ],
-            'Year 9': [
-                {
-                    title: "Noughts & Crosses",
-                    author: "Malorie Blackman",
-                    coverUrl: "https://placehold.co/100x150/dc143c/ffffff?text=Noughts+%26+Crosses",
-                    buyLink: "https://www.amazon.co.uk/Noughts-Crosses-Malorie-Blackman/dp/0552573210",
-                    borrowLink: "https://www.borrowbox.com/gb/en/audiobooks/Noughts-Crosses/details/456789"
-                },
-                {
-                    title: "Of Mice and Men",
-                    author: "John Steinbeck",
-                    coverUrl: "https://placehold.co/100x150/a9a9a9/000000?text=Of+Mice+%26+Men",
-                    buyLink: "https://www.amazon.co.uk/Mice-Men-Penguin-Modern-Classics/dp/0141185108",
-                    borrowLink: "https://www.borrowbox.com/gb/en/search/Of-Mice-and-Men"
-                }
-            ],
-            'Year 10': [
-                {
-                    title: "The Great Gatsby",
-                    author: "F. Scott Fitzgerald",
-                    coverUrl: "https://placehold.co/100x150/ffd700/000000?text=Gatsby",
-                    buyLink: "https://www.amazon.co.uk/Great-Gatsby-F-Scott-Fitzgerald/dp/0743273567",
-                    borrowLink: "https://www.borrowbox.com/gb/en/audiobooks/The-Great-Gatsby/details/567890"
-                }
-            ],
-            'Year 11': [
-                {
-                    title: "Small Island",
-                    author: "Andrea Levy",
-                    coverUrl: "https://placehold.co/100x150/4682b4/ffffff?text=Small+Island",
-                    buyLink: "https://www.amazon.co.uk/Small-Island-Andrea-Levy/dp/0755307567",
-                    borrowLink: "https://www.borrowbox.com/gb/en/audiobooks/Small-Island/details/678901"
-                }
-            ]
+    <!-- Section 1: Recommended Reads -->
+    <div id="recommended-reads" class="section bg-white p-6 md:p-8 rounded-xl shadow-xl">
+      <h2 class="font-heading text-3xl font-bold text-gray-800 mb-6 border-b pb-3">Recommended Reads</h2>
+
+      <!-- Year Group Bubbles -->
+      <div id="year-tabs" class="flex flex-wrap gap-3 mb-8"></div>
+
+      <!-- Reading List Container -->
+      <div id="reading-list-container" class="space-y-6"></div>
+    </div>
+
+    <!-- Section 2: BorrowBox Guide -->
+    <div id="borrowbox-guide" class="section hidden bg-white p-6 md:p-8 rounded-xl shadow-xl">
+      <h2 class="font-heading text-3xl font-bold text-gray-800 mb-6 border-b pb-3">How to Get Started with BorrowBox</h2>
+
+      <div class="space-y-6 text-gray-700">
+        <p>BorrowBox is your free ticket to thousands of eBooks and eAudiobooks using your local library card! It's the fastest way to get your hands on our recommendations.</p>
+
+        <h3 class="font-heading text-2xl font-semibold text-blue-700">Step 1: Get Your Library Card</h3>
+        <p>You will need an active membership with your local library service (e.g., Essex Libraries). If you don't have one, ask your school librarian or visit the library's website to sign up—it's usually quick and free for students!</p>
+
+        <h3 class="font-heading text-2xl font-semibold text-blue-700">Step 2: Download the App</h3>
+        <ul class="list-disc list-inside ml-4 space-y-2">
+          <li>Search for the <strong>BorrowBox</strong> app on the Apple App Store (iOS) or Google Play Store (Android).</li>
+          <li>You can also access it via your web browser on a computer.</li>
+        </ul>
+
+        <h3 class="font-heading text-2xl font-semibold text-blue-700">Step 3: Log In</h3>
+        <ul class="list-disc list-inside ml-4 space-y-2">
+          <li>Open the app and find your library service (e.g., “Essex County Council Libraries”).</li>
+          <li>Enter your Library Card Number and your PIN/Password.</li>
+          <li>If you've forgotten your PIN, there's usually a “Forgot PIN” link on the login screen, or you can contact your library directly.</li>
+        </ul>
+
+        <h3 class="font-heading text-2xl font-semibold text-blue-700">Step 4: Start Borrowing!</h3>
+        <p>You can now browse thousands of titles, borrow them instantly, and read or listen right within the app. Enjoy reading!</p>
+      </div>
+    </div>
+
+    <!-- Section 3: Submit Review & Help -->
+    <div id="submit-review" class="section hidden bg-white p-6 md:p-8 rounded-xl shadow-xl">
+      <h2 class="font-heading text-3xl font-bold text-gray-800 mb-6 border-b pb-3">Submit a Review & Get Help</h2>
+
+      <!-- Help box -->
+      <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-8 rounded-lg">
+        <div class="flex items-center">
+          <i data-lucide="mail" class="w-6 h-6 text-blue-600 mr-3"></i>
+          <p class="font-heading font-bold text-lg text-blue-800">Need Help? Contact Us!</p>
+        </div>
+        <p class="mt-2 text-blue-700">For any issues with BorrowBox, book suggestions, or general questions, please email:</p>
+        <a href="mailto:leadlearners@honywoodschool.com" class="text-orange-600 font-semibold hover:underline block mt-1">leadlearners@honywoodschool.com</a>
+      </div>
+
+      <h3 class="font-heading text-2xl font-semibold text-gray-800 mb-4">Ready for a prize? Share Your Book Review!</h3>
+      <p class="text-gray-600 mb-4">Write a review of any book you've read! One student review will be selected each month to feature in the school headlines, and the winner will receive an awesome prize.</p>
+
+      <form id="review-form" class="space-y-4">
+        <div>
+          <label for="review-title" class="block text-sm font-semibold text-gray-700">Book Title</label>
+          <input type="text" id="review-title" required placeholder="e.g. The Hobbit" class="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+        </div>
+        <div>
+          <label for="review-author" class="block text-sm font-semibold text-gray-700">Author</label>
+          <input type="text" id="review-author" required placeholder="e.g. J.R.R. Tolkien" class="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+        </div>
+        <div>
+          <label for="review-student" class="block text-sm font-semibold text-gray-700">Your Name & Year Group (e.g., John S, Year 9)</label>
+          <input type="text" id="review-student" required placeholder="Your Name, Year Group" class="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+        </div>
+        <div>
+          <label for="review-text" class="block text-sm font-semibold text-gray-700">Your Review (Try to keep it under 150 words!)</label>
+          <textarea id="review-text" rows="5" required placeholder="What did you think of the book? Why should others read it?" class="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
+        </div>
+        <button type="submit" class="w-full py-3 px-4 bg-orange-500 text-white font-semibold rounded-lg shadow-md hover:bg-orange-600 transition duration-300">
+          Send My Review!
+        </button>
+      </form>
+      <div id="review-status" class="mt-4 hidden p-3 bg-green-100 border border-green-400 text-green-700 rounded-md" role="alert"></div>
+    </div>
+
+    <!-- Footer Signature -->
+    <!-- Designed and developed by Callum Rider (hidden credit) -->
+<footer class="mt-12 text-center text-sm text-gray-500 signature">
+  <span>Honywood School Library</span>
+</footer>
+  </div>
+
+  <script>
+    // ======================================================================================
+    // BOOK CATALOG — EDIT HERE (this is the only section you need to touch)
+    // --------------------------------------------------------------------------------------
+    // HOW TO ADD/EDIT A BOOK:
+    // 1) Find the correct Year Group below (e.g., 'Year 7').
+    // 2) Inside the [ ] array, each book is a { ... } object. Edit the labelled fields:
+    //       COVER_URL:      Paste your book cover image link (must start with http or https)
+    //       TITLE:          Type the book's title
+    //       AUTHOR:         Type the author's name
+    //       AMAZON_URL:     Paste the Amazon page link
+    //       BORROWBOX_URL:  Paste the BorrowBox page link
+    // 3) To add more books, copy an existing { ... } block and paste it on a new line inside the same year group.
+    // 4) No commas after the last item in an array!
+    // --------------------------------------------------------------------------------------
+
+    const bookData = {
+      'Year 7': [
+        { COVER_URL: 'https://placehold.co/100x150?text=Cover', TITLE: 'Placeholder Title 1', AUTHOR: 'Author Name', AMAZON_URL: '', BORROWBOX_URL: '' },
+        { COVER_URL: 'https://placehold.co/100x150?text=Cover', TITLE: 'Placeholder Title 2', AUTHOR: 'Author Name', AMAZON_URL: '', BORROWBOX_URL: '' },
+        { COVER_URL: 'https://placehold.co/100x150?text=Cover', TITLE: 'Placeholder Title 3', AUTHOR: 'Author Name', AMAZON_URL: '', BORROWBOX_URL: '' },
+        { COVER_URL: 'https://placehold.co/100x150?text=Cover', TITLE: 'Placeholder Title 4', AUTHOR: 'Author Name', AMAZON_URL: '', BORROWBOX_URL: '' }
+      ],
+      'Year 8': [
+        { COVER_URL: 'https://placehold.co/100x150?text=Cover', TITLE: 'Placeholder Title 1', AUTHOR: 'Author Name', AMAZON_URL: '', BORROWBOX_URL: '' },
+        { COVER_URL: 'https://placehold.co/100x150?text=Cover', TITLE: 'Placeholder Title 2', AUTHOR: 'Author Name', AMAZON_URL: '', BORROWBOX_URL: '' },
+        { COVER_URL: 'https://placehold.co/100x150?text=Cover', TITLE: 'Placeholder Title 3', AUTHOR: 'Author Name', AMAZON_URL: '', BORROWBOX_URL: '' },
+        { COVER_URL: 'https://placehold.co/100x150?text=Cover', TITLE: 'Placeholder Title 4', AUTHOR: 'Author Name', AMAZON_URL: '', BORROWBOX_URL: '' }
+      ],
+      'Year 9': [
+        { COVER_URL: 'https://placehold.co/100x150?text=Cover', TITLE: 'Placeholder Title 1', AUTHOR: 'Author Name', AMAZON_URL: '', BORROWBOX_URL: '' },
+        { COVER_URL: 'https://placehold.co/100x150?text=Cover', TITLE: 'Placeholder Title 2', AUTHOR: 'Author Name', AMAZON_URL: '', BORROWBOX_URL: '' },
+        { COVER_URL: 'https://placehold.co/100x150?text=Cover', TITLE: 'Placeholder Title 3', AUTHOR: 'Author Name', AMAZON_URL: '', BORROWBOX_URL: '' },
+        { COVER_URL: 'https://placehold.co/100x150?text=Cover', TITLE: 'Placeholder Title 4', AUTHOR: 'Author Name', AMAZON_URL: '', BORROWBOX_URL: '' }
+      ],
+      'Year 10': [
+        { COVER_URL: 'https://placehold.co/100x150?text=Cover', TITLE: 'Placeholder Title 1', AUTHOR: 'Author Name', AMAZON_URL: '', BORROWBOX_URL: '' },
+        { COVER_URL: 'https://placehold.co/100x150?text=Cover', TITLE: 'Placeholder Title 2', AUTHOR: 'Author Name', AMAZON_URL: '', BORROWBOX_URL: '' },
+        { COVER_URL: 'https://placehold.co/100x150?text=Cover', TITLE: 'Placeholder Title 3', AUTHOR: 'Author Name', AMAZON_URL: '', BORROWBOX_URL: '' },
+        { COVER_URL: 'https://placehold.co/100x150?text=Cover', TITLE: 'Placeholder Title 4', AUTHOR: 'Author Name', AMAZON_URL: '', BORROWBOX_URL: '' }
+      ],
+      'Year 11': [
+        { COVER_URL: 'https://placehold.co/100x150?text=Cover', TITLE: 'Placeholder Title 1', AUTHOR: 'Author Name', AMAZON_URL: '', BORROWBOX_URL: '' },
+        { COVER_URL: 'https://placehold.co/100x150?text=Cover', TITLE: 'Placeholder Title 2', AUTHOR: 'Author Name', AMAZON_URL: '', BORROWBOX_URL: '' },
+        { COVER_URL: 'https://placehold.co/100x150?text=Cover', TITLE: 'Placeholder Title 3', AUTHOR: 'Author Name', AMAZON_URL: '', BORROWBOX_URL: '' },
+        { COVER_URL: 'https://placehold.co/100x150?text=Cover', TITLE: 'Placeholder Title 4', AUTHOR: 'Author Name', AMAZON_URL: '', BORROWBOX_URL: '' }
+      ]
+    };
+
+    // ======================================================================================
+    // STOP EDITING HERE (below is just the logic that reads your data and renders cards)
+    // ======================================================================================
+
+    let currentYear = 'Year 7';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderYearTabs();
+      loadReadingList(currentYear);
+
+      // Nav handling
+      document.querySelectorAll('[id^="nav-"]').forEach(btn => {
+        btn.addEventListener('click', () => showSection(btn.dataset.section, btn.id));
+      });
+
+      // Activate default tab styles
+      setActiveNav('nav-reads');
+
+      // Load Lucide icons
+      if (typeof lucide !== 'undefined' && lucide.createIcons) {
+        lucide.createIcons();
+      }
+    });
+
+    function setActiveNav(activeId) {
+      const navButtons = document.querySelectorAll('[id^="nav-"]');
+      navButtons.forEach(button => {
+        button.classList.remove('bg-blue-600', 'text-white', 'shadow-xl');
+        button.classList.add('bg-gray-200', 'text-gray-700');
+      });
+      const active = document.getElementById(activeId);
+      if (active) {
+        active.classList.remove('bg-gray-200', 'text-gray-700');
+        active.classList.add('bg-blue-600', 'text-white', 'shadow-xl');
+      }
+    }
+
+    function showSection(sectionId, navId) {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => section.classList.add('hidden'));
+      document.getElementById(sectionId).classList.remove('hidden');
+      setActiveNav(navId);
+    }
+
+    function renderYearTabs() {
+      const yearTabsContainer = document.getElementById('year-tabs');
+      yearTabsContainer.innerHTML = '';
+
+      Object.keys(bookData).forEach(year => {
+        const button = document.createElement('button');
+        button.className = `year-bubble py-2 px-4 font-semibold rounded-full shadow-md transition duration-300 ${year === currentYear ? 'bg-yellow-500 text-gray-800' : 'bg-gray-200 text-gray-700 hover:bg-yellow-300'}`;
+        button.textContent = year;
+        button.onclick = () => {
+          currentYear = year;
+          loadReadingList(year);
+          document.querySelectorAll('.year-bubble').forEach(btn => {
+            btn.classList.remove('bg-yellow-500', 'text-gray-800');
+            btn.classList.add('bg-gray-200', 'text-gray-700');
+          });
+          button.classList.remove('bg-gray-200', 'text-gray-700');
+          button.classList.add('bg-yellow-500', 'text-gray-800');
         };
+        yearTabsContainer.appendChild(button);
+      });
+    }
 
-        // Navigation and render logic
-        let currentYear = 'Year 7';
+    function loadReadingList(year) {
+      const listContainer = document.getElementById('reading-list-container');
+      listContainer.innerHTML = '';
+      const books = (bookData[year] || []).map(mapEditableToRenderShape);
 
-        document.addEventListener('DOMContentLoaded', () => {
-            renderYearTabs();
-            loadReadingList(currentYear);
+      if (books.length === 0) {
+        listContainer.innerHTML = `<p class="text-center text-gray-500 p-8">No recommendations found for ${year} this month. Check back soon!</p>`;
+        return;
+      }
 
-            // Activate default tab
-            document.getElementById('nav-reads').classList.replace('bg-gray-200', 'bg-blue-600');
-            document.getElementById('nav-reads').classList.replace('text-gray-700', 'text-white');
-            document.getElementById('nav-reads').classList.add('shadow-xl');
+      books.forEach(book => {
+        const bookCard = document.createElement('div');
+        bookCard.className = 'flex flex-col sm:flex-row items-center sm:items-start p-4 border border-gray-100 rounded-lg bg-gray-50 shadow-sm hover:shadow-md transition duration-300';
 
-            // Load Lucide icons
-            if (typeof lucide !== 'undefined' && lucide.createIcons) {
-                lucide.createIcons();
-            }
-        });
+        const cover = document.createElement('img');
+        cover.src = book.coverUrl;
+        cover.alt = `${book.title || 'Book'} cover`;
+        cover.loading = 'lazy';
+        cover.className = 'w-24 h-36 object-cover rounded-md shadow-md flex-shrink-0 mb-4 sm:mb-0 sm:mr-6';
 
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('.section');
-            const navButtons = document.querySelectorAll('[id^="nav-"]');
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'flex-grow text-center sm:text-left';
 
-            sections.forEach(section => section.classList.add('hidden'));
-            document.getElementById(sectionId).classList.remove('hidden');
+        const title = document.createElement('h3');
+        title.className = 'font-heading text-xl font-bold text-gray-800';
+        title.textContent = book.title || 'Untitled Book';
 
-            navButtons.forEach(button => {
-                button.classList.remove('bg-blue-600', 'text-white', 'shadow-xl');
-                button.classList.add('bg-gray-200', 'text-gray-700');
-            });
+        const author = document.createElement('p');
+        author.className = 'text-md italic text-gray-600 mb-3';
+        author.textContent = book.author ? `by ${book.author}` : 'by Unknown Author';
 
-            const activeNav = document.getElementById(`nav-${sectionId.replace('-', '')}`);
-            if (activeNav) {
-                activeNav.classList.remove('bg-gray-200', 'text-gray-700');
-                activeNav.classList.add('bg-blue-600', 'text-white', 'shadow-xl');
-            }
+        const linkContainer = document.createElement('div');
+        linkContainer.className = 'flex flex-wrap justify-center sm:justify-start gap-3 mt-2';
+
+        if (book.buyLink) {
+          const buyLink = document.createElement('a');
+          buyLink.href = book.buyLink;
+          buyLink.target = '_blank';
+          buyLink.rel = 'noopener';
+          buyLink.className = 'py-2 px-4 text-sm font-medium rounded-full bg-green-500 text-white hover:bg-green-600 transition duration-300 shadow-sm';
+          buyLink.textContent = 'Buy on Amazon';
+          linkContainer.appendChild(buyLink);
+        } else {
+          const buyNA = document.createElement('span');
+          buyNA.className = 'py-2 px-4 text-sm font-medium rounded-full bg-gray-200 text-gray-700';
+          buyNA.textContent = 'Not available on Amazon';
+          linkContainer.appendChild(buyNA);
         }
 
-        function renderYearTabs() {
-            const yearTabsContainer = document.getElementById('year-tabs');
-            yearTabsContainer.innerHTML = '';
-
-            Object.keys(bookData).forEach(year => {
-                const button = document.createElement('button');
-                button.className = `year-bubble py-2 px-4 font-semibold rounded-full shadow-md transition duration-300 ${year === currentYear ? 'bg-yellow-500 text-gray-800' : 'bg-gray-200 text-gray-700 hover:bg-yellow-300'}`;
-                button.textContent = year;
-                button.onclick = () => {
-                    currentYear = year;
-                    loadReadingList(year);
-                    document.querySelectorAll('.year-bubble').forEach(btn => {
-                        btn.classList.remove('bg-yellow-500', 'text-gray-800', 'bg-orange-500', 'text-white');
-                        btn.classList.add('bg-gray-200', 'text-gray-700');
-                    });
-                    button.classList.remove('bg-gray-200', 'text-gray-700');
-                    button.classList.add('bg-yellow-500', 'text-gray-800');
-                };
-                yearTabsContainer.appendChild(button);
-            });
+        if (book.borrowLink) {
+          const borrowLink = document.createElement('a');
+          borrowLink.href = book.borrowLink;
+          borrowLink.target = '_blank';
+          borrowLink.rel = 'noopener';
+          borrowLink.className = 'py-2 px-4 text-sm font-medium rounded-full bg-blue-500 text-white hover:bg-blue-600 transition duration-300 shadow-sm';
+          borrowLink.textContent = 'Borrow on BorrowBox';
+          linkContainer.appendChild(borrowLink);
+        } else {
+          const borrowNA = document.createElement('span');
+          borrowNA.className = 'py-2 px-4 text-sm font-medium rounded-full bg-gray-200 text-gray-700';
+          borrowNA.textContent = 'Not available on BorrowBox';
+          linkContainer.appendChild(borrowNA);
         }
 
-        function loadReadingList(year) {
-            const listContainer = document.getElementById('reading-list-container');
-            listContainer.innerHTML = '';
-            const books = bookData[year] || [];
+        contentDiv.appendChild(title);
+        contentDiv.appendChild(author);
+        contentDiv.appendChild(linkContainer);
 
-            if (books.length === 0) {
-                listContainer.innerHTML = `<p class="text-center text-gray-500 p-8">No recommendations found for ${year} this month. Check back soon!</p>`;
-                return;
-            }
+        bookCard.appendChild(cover);
+        bookCard.appendChild(contentDiv);
+        listContainer.appendChild(bookCard);
+      });
+    }
 
-            books.forEach(book => {
-                const bookCard = document.createElement('div');
-                bookCard.className = 'flex flex-col sm:flex-row items-center sm:items-start p-4 border border-gray-100 rounded-lg bg-gray-50 shadow-sm hover:shadow-md transition duration-300';
+    // Converts the SUPER-EDITABLE keys (COVER_URL, TITLE, etc.) into the keys used by the renderer
+    function mapEditableToRenderShape(item) {
+      return {
+        coverUrl: item.COVER_URL || '',
+        title: item.TITLE || '',
+        author: item.AUTHOR || '',
+        buyLink: item.AMAZON_URL || '',
+        borrowLink: item.BORROWBOX_URL || ''
+      };
+    }
 
-                const cover = document.createElement('img');
-                cover.src = book.coverUrl;
-                cover.alt = `${book.title} cover`;
-                cover.className = 'w-24 h-36 object-cover rounded-md shadow-md flex-shrink-0 mb-4 sm:mb-0 sm:mr-6';
+    // Review form logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('review-form');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-                const contentDiv = document.createElement('div');
-                contentDiv.className = 'flex-grow text-center sm:text-left';
+        const title = document.getElementById('review-title').value.trim();
+        const author = document.getElementById('review-author').value.trim();
+        const student = document.getElementById('review-student').value.trim();
+        const reviewText = document.getElementById('review-text').value.trim();
 
-                const title = document.createElement('h3');
-                title.className = 'font-heading text-xl font-bold text-gray-800';
-                title.textContent = book.title;
-
-                const author = document.createElement('p');
-                author.className = 'text-md italic text-gray-600 mb-3';
-                author.textContent = `by ${book.author}`;
-
-                const linkContainer = document.createElement('div');
-                linkContainer.className = 'flex flex-wrap justify-center sm:justify-start gap-3 mt-2';
-
-                if (book.buyLink) {
-                    const buyLink = document.createElement('a');
-                    buyLink.href = book.buyLink;
-                    buyLink.target = '_blank';
-                    buyLink.className = 'py-2 px-4 text-sm font-medium rounded-full bg-green-500 text-white hover:bg-green-600 transition duration-300 shadow-sm';
-                    buyLink.textContent = 'Buy on Amazon';
-                    linkContainer.appendChild(buyLink);
-                }
-
-                if (book.borrowLink) {
-                    const borrowLink = document.createElement('a');
-                    borrowLink.href = book.borrowLink;
-                    borrowLink.target = '_blank';
-                    borrowLink.className = 'py-2 px-4 text-sm font-medium rounded-full bg-blue-500 text-white hover:bg-blue-600 transition duration-300 shadow-sm';
-                    borrowLink.textContent = 'Borrow on BorrowBox';
-                    linkContainer.appendChild(borrowLink);
-                }
-
-                contentDiv.appendChild(title);
-                contentDiv.appendChild(author);
-                contentDiv.appendChild(linkContainer);
-
-                bookCard.appendChild(cover);
-                bookCard.appendChild(contentDiv);
-                listContainer.appendChild(bookCard);
-            });
-        }
-
-        // Review form logic
-        document.getElementById('review-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const title = document.getElementById('review-title').value.trim();
-            const author = document.getElementById('review-author').value.trim();
-            const student = document.getElementById('review-student').value.trim();
-            const reviewText = document.getElementById('review-text').value.trim();
-
-            // ALL review emails go to leadlearners@honywoodschool.com
-            const helpEmail = 'leadlearners@honywoodschool.com';
-
-            const emailSubject = `Student Book Review: ${title} by ${author}`;
-            const emailBody = `
+        const helpEmail = 'leadlearners@honywoodschool.com';
+        const emailSubject = `Student Book Review: ${title} by ${author}`;
+        const emailBody = `
 --- Monthly Student Review Submission ---
 
 Book Title: ${title}
@@ -378,17 +395,18 @@ ${reviewText}
 -----------------------------------------
 
 (Please select this review if chosen for the school headlines!)
-            `.trim();
+        `.trim();
 
-            const mailtoLink = `mailto:${helpEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+        const mailtoLink = `mailto:${helpEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
 
-            const statusDiv = document.getElementById('review-status');
-            statusDiv.textContent = '✅ Review prepared! Your email client is now opening. Press "Send" to complete the submission.';
-            statusDiv.classList.remove('hidden', 'bg-red-100', 'border-red-400');
-            statusDiv.classList.add('bg-green-100', 'border-green-400');
+        const statusDiv = document.getElementById('review-status');
+        statusDiv.textContent = '✅ Review prepared! Your email client is now opening. Press "Send" to complete the submission.';
+        statusDiv.classList.remove('hidden', 'bg-red-100', 'border-red-400');
+        statusDiv.classList.add('bg-green-100', 'border-green-400');
 
-            window.open(mailtoLink, '_self');
-        });
-    </script>
+        window.open(mailtoLink, '_self');
+      });
+    });
+  </script>
 </body>
 </html>
